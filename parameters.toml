@@ -1,0 +1,9 @@
+name = "Millipede bar experimental parameters"
+
+[material_properties]
+elastic_modulus = 70e9  # Young's modulus (Pa)
+density = 2700  # (kg/m3)
+
+[geometric_parameters]
+junction_length = 4e-3  # (m)
+gage_distance = 40e-3  # Distance from the strain gage to the junction (m)
