@@ -35,7 +35,7 @@ def get_incident_data(file):
         file = Path(file)
     suffix = file.suffix
     if suffix.lower() != ".csv":
-        raise ValueError("Extension muse by .csv")
+        raise ValueError("Extension must be .csv")
 
     df = pd.read_csv(
         file, usecols=[0, 1], header=0, names=["Time", "Incident"], dtype=float
@@ -78,7 +78,7 @@ def model_1d(df_incident, parameter_file):
 
     # To match the time steps between incident and transmitted arrays
     if gage_distance == 0.0:
-        delay = np.amax(time) + dt
+        delay = 0.0
     else:
         delay = np.around(((2 * gage_distance + junction_length) / c), decimals=9)
         delay = ((delay * 1e9) // (dt * 1e9)) * dt
