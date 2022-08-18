@@ -48,7 +48,7 @@ def get_incident_data(file):
     return df
 
 
-def model_1d(df_incident, parameter_file):
+def model_1d(df_incident, experimental_parameters):
     """
     Read incident DataFrame and calculate Transmitted and Reflected Signals.
 
@@ -56,8 +56,6 @@ def model_1d(df_incident, parameter_file):
     :param parameter_file: TOML file with material and geometric parameters.
     :return: DataFrame with results of 1D analytical model.
     """
-    experimental_parameters = toml.load(parameter_file)
-
     material_properties = experimental_parameters["material_properties"]
     elastic_modulus = material_properties["elastic_modulus"]
     density = material_properties["density"]
@@ -90,7 +88,7 @@ def model_1d(df_incident, parameter_file):
     reflected = -(incident + transmitted)
     time_output = np.around((time + delay), decimals=9)
     df_output = pd.DataFrame(
-        {"Transmitted": transmitted, "Reflected": reflected}, index=time_output
+        {"Reflected": reflected, "Transmitted": transmitted}, index=time_output
     )
 
     df_analytical = df_incident.merge(
@@ -125,8 +123,11 @@ def main(incident, parameters, write):
     Read input waveform and produce transmitted and reflected waveforms.
     All waveforms are normalized to the maximum input signal.
     """
+    experimental_parameters = toml.load(parameters)
     df_exp = get_incident_data(file=incident)
-    df_analytical = model_1d(df_incident=df_exp, parameter_file=parameters)
+    df_analytical = model_1d(
+        df_incident=df_exp, experimental_parameters=experimental_parameters
+    )
 
     if write:
         filename = incident.stem
