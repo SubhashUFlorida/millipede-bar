@@ -36,16 +36,20 @@ Example usage, with plots, is also demonstrated in the `Examples.ipynb` notebook
 ```python
 from pathlib import Path
 
+import toml
+
 import millipede_bar as mb
 
+# Read the parameters from the TOML file
+experimental_parameters = toml.load("parameters.toml")
 
 # Import incident waveform from a csv file
 # Example waveforms are available in the `data` folder
-df_exp = mb.get_incident_data(Path('data/exp.csv'))
+df_exp = mb.get_incident_data(Path('data/experimental.csv'))
 
 # Get analytical model predictions for transmitted and reflected waveforms
 # An example of the parameter file can be found in parameters.toml
-df_analytical = mb.model_1d(df_incident=df_exp, parameter_file=Path('parameters.toml'))
+df_analytical = mb.model_1d(df_incident=df_exp, experimental_parameters=experimental_parameters)
 df_analytical.to_csv(Path('data/analytical.csv'))
 ```
 
@@ -67,10 +71,18 @@ Options:
 
 ## Citation
 If using this work, please cite the following paper:
-```citation
-Ghatu Subhash, Joachin Garcia-Suarez, Amith Cheenady, Salil Bavdekar,, Jean-Francois Molinari, Wil Whittington,
-Elastic stress wave propagation through a 180° bend in a square cross-sectional bar,
-International Journal of Engineering Science,
-2022,
-In press.
+```bibtex
+@article{SUBHASH2022103748,
+title = {Stress wave propagation through a 180° bend junction in a square cross-sectional bar},
+journal = {International Journal of Engineering Science},
+volume = {180},
+pages = {103748},
+year = {2022},
+issn = {0020-7225},
+doi = {https://doi.org/10.1016/j.ijengsci.2022.103748},
+url = {https://www.sciencedirect.com/science/article/pii/S0020722522001136},
+author = {Ghatu Subhash and Joaquin Garcia-Suarez and Amith Cheenady and Salil Bavdekar and Wilburn Whittington and Jean-Francois Molinari},
+keywords = {Solid mechanics, Wave mechanics, Stress path reversal, 180° bend},
+abstract = {Longitudinal elastic stress wave propagation through a 180° bend junction connecting two square bars is analyzed using analytical and numerical approaches and validated against experiments. The aim is to identify conditions under which the one-dimensional stress propagation principles can be applied to this geometry despite complete reversal of the stress wave path and study the mechanism of wave propagation through this geometry. By assuming the junction to move as a rigid body parallel to the input wave direction, the influence of the bend is analyzed for different pulse shapes and durations. For long duration stress pulses, the bend allows the stress wave to “flow” through the junction without distortion, whereas for short duration stress pulses, the wave undergoes significant dispersion. The junction behavior was further analyzed using finite element analysis and the results compared well with those of the analytical model. The wave motion through the junction results in asymmetric deformation of the junction, which generates flexural waves of different amplitudes in both the input and output bars. In general, stress pulses with constant peak amplitude and a smooth transition to the peak value suffer minimal dispersion as they traverse the junction. It is concluded that one-dimensional stress wave theory can be used to successfully model the propagation of long-duration longitudinal stress pulses around a 180° bend junction.}
+}
 ```
