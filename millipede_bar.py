@@ -124,9 +124,9 @@ def main(incident, parameters, write):
     All waveforms are normalized to the maximum input signal.
     """
     experimental_parameters = toml.load(parameters)
-    df_exp = get_incident_data(file=incident)
+    df_incident = get_incident_data(file=incident)
     df_analytical = model_1d(
-        df_incident=df_exp, experimental_parameters=experimental_parameters
+        df_incident=df_incident, experimental_parameters=experimental_parameters
     )
 
     if write:

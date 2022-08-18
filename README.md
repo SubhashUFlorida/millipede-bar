@@ -45,11 +45,13 @@ experimental_parameters = toml.load("parameters.toml")
 
 # Import incident waveform from a csv file
 # Example waveforms are available in the `data` folder
-df_exp = mb.get_incident_data(Path('data/experimental.csv'))
+df_incident = mb.get_incident_data(Path('data/experimental.csv'))
 
 # Get analytical model predictions for transmitted and reflected waveforms
 # An example of the parameter file can be found in parameters.toml
-df_analytical = mb.model_1d(df_incident=df_exp, experimental_parameters=experimental_parameters)
+df_analytical = mb.model_1d(
+  df_incident=df_incident, experimental_parameters=experimental_parameters
+)
 df_analytical.to_csv(Path('data/analytical.csv'))
 ```
 
