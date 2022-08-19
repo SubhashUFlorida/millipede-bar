@@ -8,11 +8,22 @@ You can simply clone the repository with the following command:
 
 All functions and classes are in the `millipede_bar` module.
 
-### Requirements
-- numpy
-- pandas
-- toml
-- click
+### Environment
+To successfully use the `millipede_bar.py` module, run 
+
+`pip install pandas`
+
+`pip install matplotlib`
+
+`pip install click`
+
+`pip install toml`
+
+`pip install jupyter` (optional, but necessary to run `Examples.ipynb`)
+
+To get the requirements in one command, `cd` to this root directory and run
+
+`pip install -r requirements.txt`
 
 ## Usage
 ### Inputs

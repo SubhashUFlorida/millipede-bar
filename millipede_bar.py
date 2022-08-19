@@ -53,7 +53,7 @@ def model_1d(df_incident, experimental_parameters):
     Read incident DataFrame and calculate Transmitted and Reflected Signals.
 
     :param df_incident: DataFrame with Time (as index) and Incident signal.
-    :param parameter_file: TOML file with material and geometric parameters.
+    :param experimental_parameters: TOML file with material and geometric parameters.
     :return: DataFrame with results of 1D analytical model.
     """
     material_properties = experimental_parameters["material_properties"]
