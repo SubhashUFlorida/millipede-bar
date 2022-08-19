@@ -25,6 +25,8 @@ To get the requirements in one command, `cd` to this root directory and run
 
 `pip install -r requirements.txt`
 
+If using conda, all of these packages are already installed in the `base` environment.
+
 ## Usage
 ### Inputs
 
