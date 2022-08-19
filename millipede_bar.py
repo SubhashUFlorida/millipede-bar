@@ -130,6 +130,8 @@ def main(incident, parameters, write):
     )
 
     if write:
+        if type(incident) is str:
+            incident = Path(incident)
         filename = incident.stem
         save_dir = incident.parent
         df_analytical.to_csv(save_dir / f"{filename}_ana_1D.csv")
